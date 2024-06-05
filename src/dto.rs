@@ -142,28 +142,28 @@ pub struct Position {
     pub side: String,
 
     /// 建玉数量。
-    #[serde(deserialize_with = "str_to_f64")]
-    pub size: f64,
+    // #[serde(deserialize_with = "str_to_f64")]
+    pub size: String,
 
     /// 発注中数量。
-    #[serde(deserialize_with = "str_to_f64", rename = "orderdSize")]
-    pub orderd_size: f64,
+    // #[serde(deserialize_with = "str_to_f64", rename = "orderdSize")]
+    pub orderd_size: String,
 
     /// 建玉レート。
-    #[serde(deserialize_with = "str_to_i64")]
-    pub price: i64,
+    // #[serde(deserialize_with = "str_to_i64")]
+    pub price: String,
 
     /// 評価損益。
-    #[serde(deserialize_with = "str_to_i64", rename = "lossGain")]
-    pub loss_gain: i64,
+    // #[serde(deserialize_with = "String_to_i64", rename = "lossGain")]
+    pub loss_gain: String,
 
     /// レバレッジ。
-    #[serde(deserialize_with = "str_to_f64")]
-    pub leverage: f64,
+    // #[serde(deserialize_with = "String_to_f64")]
+    pub leverage: String,
 
     /// ロスカットレート。
-    #[serde(deserialize_with = "str_to_f64", rename = "losscutPrice")]
-    pub losscut_price: f64,
+    // #[serde(deserialize_with = "String_to_String", rename = "losscutPrice")]
+    pub losscut_price: String,
 
     /// 注文日時。
     #[serde(deserialize_with = "gmo_timestamp_to_chrono_timestamp")]
