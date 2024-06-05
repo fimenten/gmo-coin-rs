@@ -44,9 +44,9 @@ fn build_parameters(
     execution_type: &ExecutionType,
     symbol: &Symbol,
     side: &Side,
-    size: f64,
+    size: &str,
     time_in_force: &TimeInForce,
-    price: Option<i64>,
+    price: Option<&str>,
     losscut_price: Option<i64>,
 ) -> Result<Value, Error> {
     Ok(match execution_type {
@@ -72,7 +72,7 @@ fn build_market_parameters(
     execution_type: &ExecutionType,
     symbol: &Symbol,
     side: &Side,
-    size: f64,
+    size: &str,
     time_in_force: &TimeInForce,
 ) -> Value {
     json!({
@@ -88,9 +88,9 @@ fn build_limit_or_stop_paramters(
     execution_type: &ExecutionType,
     symbol: &Symbol,
     side: &Side,
-    size: f64,
+    size: &str,
     time_in_force: &TimeInForce,
-    price: i64,
+    price: &str,
     losscut_price: Option<i64>,
 ) -> Value {
     match losscut_price {
@@ -120,9 +120,9 @@ pub async fn request_order(
     execution_type: &ExecutionType,
     symbol: &Symbol,
     side: &Side,
-    size: f64,
+    size: &str,
     time_in_force: &TimeInForce,
-    price: Option<i64>,
+    price: Option<&str>,
     losscut_price: Option<i64>,
 ) -> Result<RestResponse<Order>, Error> {
     let url = format!("{}{}", PRIVATE_ENDPOINT, ORDER_API_PATH,);
@@ -167,7 +167,7 @@ mod tests {
             &ExecutionType::Market,
             &Symbol::BtcJpy,
             &Side::Buy,
-            0.1,
+            "0.1",
             &TimeInForce::Fak,
             None,
             None,
@@ -198,9 +198,9 @@ mod tests {
             &ExecutionType::Limit,
             &Symbol::BtcJpy,
             &Side::Buy,
-            0.1,
+            "0.1",
             &TimeInForce::Fas,
-            Some(100),
+            Some("100"),
             Some(100),
         )
         .await
@@ -229,9 +229,9 @@ mod tests {
             &ExecutionType::Stop,
             &Symbol::BtcJpy,
             &Side::Buy,
-            0.1,
+            "0.1",
             &TimeInForce::Fas,
-            Some(100),
+            Some("100"),
             None,
         )
         .await

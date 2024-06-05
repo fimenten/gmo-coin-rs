@@ -251,8 +251,8 @@ impl<T: HttpClient + std::marker::Sync + std::marker::Send> PrivateAPI<T> {
         execution_type: &ExecutionType,
         symbol: &Symbol,
         side: &Side,
-        size: f64,
-        price: Option<i64>,
+        size: &str,
+        price: Option<&str>,
     ) -> Result<RestResponse<Order>, Error> {
         let time_in_force = get_default_time_in_force(&execution_type);
         let response = request_order(
@@ -286,8 +286,8 @@ impl<T: HttpClient + std::marker::Sync + std::marker::Send> PrivateAPI<T> {
         execution_type: &ExecutionType,
         symbol: &Symbol,
         side: &Side,
-        size: f64,
-        price: Option<i64>,
+        size: &str,
+        price: Option<&str>,
         time_in_force: &TimeInForce,
         losscut_price: Option<i64>,
     ) -> Result<RestResponse<Order>, Error> {
@@ -424,8 +424,8 @@ impl<T: HttpClient + std::marker::Sync + std::marker::Send> PrivateAPI<T> {
         execution_type: &ExecutionType,
         symbol: &Symbol,
         side: &Side,
-        size: f64,
-        price: Option<i64>,
+        size: &str,
+        price: Option<&str>,
         position_id: &str,
     ) -> Result<RestResponse<CloseOrder>, Error> {
         let time_in_force = get_default_time_in_force(&execution_type);
@@ -460,8 +460,8 @@ impl<T: HttpClient + std::marker::Sync + std::marker::Send> PrivateAPI<T> {
         execution_type: &ExecutionType,
         symbol: &Symbol,
         side: &Side,
-        size: f64,
-        price: Option<i64>,
+        size: &str,
+        price: Option<&str>,
         position_id: &str,
         time_in_force: &TimeInForce,
     ) -> Result<RestResponse<CloseOrder>, Error> {
