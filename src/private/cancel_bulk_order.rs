@@ -43,7 +43,7 @@ impl RestResponse<CancelBulkOrder> {
 }
 
 fn build_parameters(
-    symbols: &[&Symbol],
+    symbols: &[&str],
     side: Option<&Side>,
     settle_type: Option<&SettleType>,
     desc: bool,
@@ -80,7 +80,7 @@ fn build_parameters(
 /// 注文の一括キャンセルAPIを呼び出す。
 pub async fn request_cancel_bulk_order(
     http_client: &impl HttpClient,
-    symbols: &[&Symbol],
+    symbols: &[&str],
     side: Option<&Side>,
     settle_type: Option<&SettleType>,
     desc: bool,
@@ -116,7 +116,7 @@ mod tests {
         };
         let resp = request_cancel_bulk_order(
             &http_client,
-            &vec![&Symbol::Btc, &Symbol::EthJpy],
+            &vec![Symbol::Btc.to_string(), Symbol::EthJpy.to_string()],
             Some(&Side::Sell),
             None,
             false,

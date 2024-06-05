@@ -373,7 +373,7 @@ impl<T: HttpClient + std::marker::Sync + std::marker::Send> PrivateAPI<T> {
     ///
     pub async fn cancel_bulk_order(
         &self,
-        symbols: &[&Symbol],
+        symbols: &[&str],
     ) -> Result<RestResponse<CancelBulkOrder>, Error> {
         let response =
             request_cancel_bulk_order(&self.http_client, &symbols, None, None, false).await?;
@@ -391,7 +391,7 @@ impl<T: HttpClient + std::marker::Sync + std::marker::Send> PrivateAPI<T> {
     ///
     pub async fn cancel_bulk_order_with_options(
         &self,
-        symbols: &[&Symbol],
+        symbols: &[&str],
         side: Option<&Side>,
         settle_type: Option<&SettleType>,
         desc: Option<bool>,
