@@ -42,7 +42,7 @@ impl RestResponse<Order> {
 
 fn build_parameters(
     execution_type: &ExecutionType,
-    symbol: &Symbol,
+    symbol: &str,
     side: &Side,
     size: &str,
     time_in_force: &TimeInForce,
@@ -70,7 +70,7 @@ fn build_parameters(
 
 fn build_market_parameters(
     execution_type: &ExecutionType,
-    symbol: &Symbol,
+    symbol: &str,
     side: &Side,
     size: &str,
     time_in_force: &TimeInForce,
@@ -86,7 +86,7 @@ fn build_market_parameters(
 
 fn build_limit_or_stop_paramters(
     execution_type: &ExecutionType,
-    symbol: &Symbol,
+    symbol: &str,
     side: &Side,
     size: &str,
     time_in_force: &TimeInForce,
@@ -118,7 +118,7 @@ fn build_limit_or_stop_paramters(
 pub async fn request_order(
     http_client: &impl HttpClient,
     execution_type: &ExecutionType,
-    symbol: &Symbol,
+    symbol: &str,
     side: &Side,
     size: &str,
     time_in_force: &TimeInForce,
@@ -165,7 +165,7 @@ mod tests {
         let resp = request_order(
             &http_client,
             &ExecutionType::Market,
-            &Symbol::BtcJpy,
+            &Symbol::BtcJpy.to_string(),
             &Side::Buy,
             "0.1",
             &TimeInForce::Fak,
@@ -196,7 +196,7 @@ mod tests {
         let resp = request_order(
             &http_client,
             &ExecutionType::Limit,
-            &Symbol::BtcJpy,
+            &Symbol::BtcJpy.to_string(),
             &Side::Buy,
             "0.1",
             &TimeInForce::Fas,
@@ -227,7 +227,7 @@ mod tests {
         let resp = request_order(
             &http_client,
             &ExecutionType::Stop,
-            &Symbol::BtcJpy,
+            &Symbol::BtcJpy.to_string(),
             &Side::Buy,
             "0.1",
             &TimeInForce::Fas,

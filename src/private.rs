@@ -249,7 +249,7 @@ impl<T: HttpClient + std::marker::Sync + std::marker::Send> PrivateAPI<T> {
     pub async fn order(
         &self,
         execution_type: &ExecutionType,
-        symbol: &Symbol,
+        symbol: &str,
         side: &Side,
         size: &str,
         price: Option<&str>,
@@ -284,7 +284,7 @@ impl<T: HttpClient + std::marker::Sync + std::marker::Send> PrivateAPI<T> {
     pub async fn order_with_options(
         &self,
         execution_type: &ExecutionType,
-        symbol: &Symbol,
+        symbol: &str,
         side: &Side,
         size: &str,
         price: Option<&str>,
